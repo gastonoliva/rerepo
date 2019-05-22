@@ -1,44 +1,73 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Home</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">The Trading Post(Logo)</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"> Inicio</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Compras</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Ingresar</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Registrar</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Ayuda</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="¿Que estas buscando?" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-    </form>
+<head>
+  <?php require_once("head.php")?>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+  <?php require_once("header.php");?>
+  <div class="row">
+    <section class="productos col-xs-12 col-md-9">
+
+      <div class="row">
+
+        <div class="col-xs-12 col-md-4  offset-2">
+          <article class="producto">
+            <div class="foto">
+              <img class="foto" src="img/download.jpg" alt="camiseta">
+            </div>
+            <h4>Perfume Invictus</h4>
+            <p>Perfume Hombre Paco Rabanne Invictus Intense Edt X 100ml</p>
+            <a class="mas" href="#">ver más</a>
+          </article>
+        </div>
+
+        <div class="col-xs-12 col-md-4 offset-1 ">
+          <article class="producto">
+            <div class="foto">
+              <img class="foto" src="img/auto.jpg" alt="auto">
+            </div>
+            <h4>Peugeot 308</h4>
+            <p>Peugeot 308 1.6 Sport Thp 163cv año 2013</p>
+            <a class="mas" href="#">ver más</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="col-xs-12 col-md-2" class="datosUsuario">
+      <p> Usuario: <br> Calificacion: N/A</p>
+    </section>
+
+    <section class="productos col-xs-12 col-md-9">
+
+      <div class="row">
+
+        <div class="col-xs-12 col-md-4  offset-2">
+          <article class="producto">
+            <div class="foto">
+              <img class="foto" src="img/ps4.jpg" alt="camiseta" width="300px" height="170px">
+            </div>
+            <h4>Sony Ps4</h4>
+            <p>Playstation 4 Pro 1tb Marvel's Spiderman Ps4 Limited Edition</p>
+            <a class="mas" href="#">ver más</a>
+          </article>
+        </div>
+
+        <div class="col-xs-12 col-md-4 offset-1">
+          <article class="producto">
+            <div class="foto">
+              <img class="foto" src="img/parlante.jpg" alt="auto" width="300px" height="170px">
+            </div>
+            <h4>JBL Parlante portatil</h4>
+            <p>Parlante Portatil Jbl Flip 4 Bluetooth iPhone Micro Usb</p>
+            <a class="mas" href="#">ver más</a>
+          </article>
+        </div>
+      </div>
+    </section>
   </div>
-</nav>
-  </head>
-  <body>
-<div class="row">
-  <div class="col-sm-3">
-  </div>
-</div>
-  </body>
-</html>
+  <?php include ("footer.php") ?>

@@ -1,0 +1,44 @@
+/* General */
+
+* {
+  box-sizing: border-box;
+}
+
+/* !!!!!!! Cuidado !!!!!!!!!*/
+
+.row {
+  margin-left: 0!important;
+  margin-right: 0!important;
+}
+
+/* Navegación */
+
+header {
+  margin-bottom: 65px;
+}
+
+/* Articulos */
+
+.producto .foto img {
+  width: 100%;
+}
+
+/* Footer */
+ footer {
+   background-color: #f8f9fa;
+   padding: 0 16px;
+   margin-top: 65px;
+ }
+
+ footer ul {
+   list-style-type: none;
+   padding-left: 0;
+ }
+
+.datosUsuario {
+  background-color: black!important;
+}
+
+.left{
+  text-align: left!important;
+}
