@@ -18,18 +18,23 @@
       <form class="form-signin">
         <img class="mb-4" src="img/registro.jpg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Crear usuario</h1>
+        <div>
         <label for="inputEmail" class="sr-only">Email</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="">
+        <input type="email" id="inputEmail" class="form-control"  placeholder="Email">
+      </div>
         <label for="inputPassword" class="sr-only">Contraseña</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required="">
         <label for="inputPassword" class="sr-only">Confirmar contraseña</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Confirmar contraseña" required="">
         <div class="checkbox mb-3"><br>
     <label>
+            <input  type="file" name="avatar" value=""/>
+            <br>
+            <br>
       <input type="checkbox" value="remember-me"> Recordar
     </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Crear Usuario</button>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Crear Usuario</button>
       </form>
     </article>
   </section>

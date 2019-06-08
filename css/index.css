@@ -17,6 +17,20 @@ header {
   margin-bottom: 65px;
 }
 
+.marco {
+  width: 25%;
+  border: solid 1px black;
+  margin: 0 auto;
+}
+
+.marcoReg {
+  width: 100%;
+  border: solid 1px black;
+  padding-left: 20px ;
+  padding-right: 20px ;
+  padding-top: 10px ;
+}
+
 /* Articulos */
 
 .producto .foto img {
@@ -41,4 +55,14 @@ header {
 
 .left{
   text-align: left!important;
+}
+
+.carruselH{
+  height: 40vh;
+  width: 10vw;
+  margin: 0 auto;
+}
+
+span{
+  color: red;
 }
