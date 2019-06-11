@@ -1,68 +1,54 @@
-/* General */
+  /* General */
 
-* {
-  box-sizing: border-box;
-}
+  * {
+    box-sizing: border-box;
+  }
 
-/* !!!!!!! Cuidado !!!!!!!!!*/
+  /* !!!!!!! Cuidado !!!!!!!!!*/
 
-.row {
-  margin-left: 0!important;
-  margin-right: 0!important;
-}
+  .row {
+    margin-left: 0!important;
+    margin-right: 0!important;
+  }
 
-/* Navegación */
+  /* Navegación */
 
-header {
-  margin-bottom: 65px;
-}
+  header {
+    margin-bottom: 65px;
+  }
 
-.marco {
-  width: 25%;
-  border: solid 1px black;
-  margin: 0 auto;
-}
+  .marco {
+    width: 25%;
+    border: solid 1px black;
+    margin: 0 auto;
+  }
 
-.marcoReg {
-  width: 100%;
-  border: solid 1px black;
-  padding-left: 20px ;
-  padding-right: 20px ;
-  padding-top: 10px ;
-}
+  .marcoReg {
+    width: 100%;
+    border: solid 1px black;
+    padding-left: 20px ;
+    padding-right: 20px ;
+    padding-top: 10px ;
+  }
 
-/* Articulos */
+  /* Articulos */
 
-.producto .foto img {
-  width: 100%;
-}
+  .producto .foto img {
+    width: 100%;
+  }
 
-/* Footer */
- footer {
-   background-color: #f8f9fa;
-   padding: 0 16px;
-   margin-top: 65px;
- }
+  /* Footer */
+   footer {
+     background-color: #f8f9fa;
+     padding: 0 16px;
+     margin-top: 65px;
+   }
 
- footer ul {
-   list-style-type: none;
-   padding-left: 0;
- }
+   footer ul {
+     list-style-type: none;
+     padding-left: 0;
+   }
 
-.datosUsuario {
-  background-color: black!important;
-}
-
-.left{
-  text-align: left!important;
-}
-
-.carruselH{
-  height: 40vh;
-  width: 10vw;
-  margin: 0 auto;
-}
-
-span{
-  color: red;
-}
+  span{
+    color: red;
+  }

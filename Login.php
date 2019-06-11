@@ -1,30 +1,36 @@
 <?php
-include_once("helpers.php");
-include_once("controladores/funciones.php");
+require_once("helpers.php");
+require_once("controladores/funciones.php");
 if($_POST){
+  $errores = validar($_POST,'Login');
+  if(count($errores) == 0){
 
-  $errores= validar($_POST,"login");
-  if(count($errores)==0){
-    $usuario = buscarEmail($_POST["email"]);
+    $usuario = buscarPorEmail($_POST["email"]);
     if($usuario == null){
-      $errores["email"]="Usuario no existe";
+      $errores["email"]= "Usuario / Contraseña invalidos";
     }else{
-      if(password_verify($_POST["password"],$usuario["password"]) == false){
-        $errores["password"]="Error en los datos verifique";
-      }else{
-        seteoUsuario($usuario,$_POST);
-        if(validarUsuario()){
-          header("location: index.php");
-          exit;
-        }else{
-          header("location: registrar.php");
-          exit;
-        }
-      }
+      if(password_verify($_POST["password"],$usuario["password"])==false){
+      $errores["password"]="Usuario / Contraseña invalidos";
+  }else {
+
+    seteoUsuario($usuario,$_POST);
+    if(validarAcceso()){
+      header("location: index.php");
+      exit;
+    }else{
+      header("location: login.php");
+      exit;
     }
+
   }
 }
+
+}
+}
+
+
  ?>
+
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
@@ -36,22 +42,24 @@ if($_POST){
       <?php  require_once("header.php");?>
       <section class="marco">
         <article class="col-xs-12">
-            <form class="px-4 py-3">
+            <form action="" method="POST" class="px-4 py-3">
               <div class="form-group text-center">
                 <h2>Ingresar</h2>
               </div>
               <div class="form-group">
-                <label for="exampleDropdownFormEmail1">Email</label>
-                <input name="email" type="text" class="form-control" id="exampleDropdownFormEmail1" value="<?=isset($errores["email"])? "":persistir("email") ;?>" placeholder="email@ejemplo.com">
+                <label for="email">Email</label>
+                <input name="email" type="text" class="form-control" id="email"
+                value="<?=isset($errores['email'])? "":persistir("email") ;?> " placeholder="email@ejemplo.com">
                 <span><?= isset($errores["email"])? $errores["email"]: ""; ?></span>
               </div>
               <div class="form-group">
-                <label for="exampleDropdownFormPassword1">Contraseña</label>
-                <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Contraseña">
+                <label for="password">Contraseña</label>
+                <input name="password" type="password" class="form-control" id="password">
+                <span><?= isset($errores["password"])? $errores["password"]: ""; ?></span>
               </div>
               <div class="form-group">
                 <div class="form-check">
-                  <input  name="recordar" type="checkbox" class="form-check-input" id="dropdownCheck">
+                  <input name="recordar" type="checkbox" class="form-check-input" id="recordarme" value="recordar">
                   <label class="form-check-label" for="dropdownCheck">
                     Recordarme
                   </label>

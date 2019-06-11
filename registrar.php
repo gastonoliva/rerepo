@@ -2,15 +2,16 @@
 require_once("helpers.php");
 require_once("controladores/funciones.php");
 if($_POST){
-  $errores = validar($_POST, "registrar");
-if (count($errores) == 0) {
-  $imagen = armarImagen($_FILES);
-  $usuario = armarUsuario($_POST,$imagen);
-  guardarUsuario($usuario);
-  header("location:Login.php");
-        exit;
+	$errores = validar($_POST,'registrar');
+  if(count($errores)== 0){
+    $foto = armarFoto($_FILES);
+    $usuario = armarUsuario($_POST,$foto);
+    guardarUsuario($usuario);
+    header("location: login.php");
+    exit;
+  }
 }
-}
+
 ?>
 
 <!doctype html>
@@ -46,7 +47,6 @@ if (count($errores) == 0) {
   <div>
     <input id="email" name="email" type="text" value="<?= isset($errores["email"])? "": persistir("email") ?>" placeholder="Email@ejemplo.com" class="form-control input-md">
    <span><?= isset($errores["email"])? $errores["email"]: ""; ?></span>
-
   </div>
 </div>
 
@@ -56,27 +56,26 @@ if (count($errores) == 0) {
   <div>
     <input id="password" name="password" type="password" placeholder="Contraseña" class="form-control input-md">
  <span><?= isset($errores["password"])? $errores["password"]: ""; ?></span>
-
   </div>
 </div>
 
-<!-- rePassword input-->
+<!-- Password input-->
 <div class="form-group">
   <label class="col-xs-12 control-label" for="repassword">Confirmar contraseña</label>
   <div>
     <input id="repassword" name="repassword" type="password" placeholder="Confirmar contraseña" class="form-control input-md">
  <span><?= isset($errores["repassword"])? $errores["repassword"]: ""; ?></span>
-
   </div>
 </div>
 
 <!-- File Button -->
 <div class="form-group">
- <label class="col-xs-12 control-label" for="filebutton">Insertar foto</label>
- <div>
-   <input id="filebutton" name="filebutton" class="input-file" type="file">
-   <br>
- </div>
+  <label class="col-xs-12 control-label" for="filebutton">Insertar foto</label>
+  <div>
+    <input id="filebutton" name="filebutton"  class="input-file" type="file">
+    <br>
+    <span><?= isset($errores["filebutton"])? $errores["filebutton"]: ""; ?></span>
+  </div>
 </div>
 
 <!-- Button -->
