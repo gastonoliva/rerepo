@@ -3,7 +3,6 @@
 
 <head>
   <?php require_once("head.php")?>
-  <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>

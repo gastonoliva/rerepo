@@ -1,35 +1,59 @@
 <?php
-require_once("helpers.php");
-require_once("controladores/funciones.php");
+require_once("autoload.php");
+
 if($_POST){
-  $errores = validar($_POST,'Login');
-  if(count($errores) == 0){
+  $tipoConexion = "MYSQL";
+  if($tipoConexion=="JSON"){
+      $usuario = new Usuario($_POST["email"],$_POST["password"]);
+      $errores= $validar->validacionLogin($usuario);
+      if(count($errores)==0){
 
-    $usuario = buscarPorEmail($_POST["email"]);
-    if($usuario == null){
-      $errores["email"]= "Usuario / Contraseña invalidos";
-    }else{
-      if(password_verify($_POST["password"],$usuario["password"])==false){
-      $errores["password"]="Usuario / Contraseña invalidos";
-  }else {
+        $usuarioEncontrado = $json->buscarPorEmail($usuario->getEmail());
+        if($usuarioEncontrado == null){
+          $errores["email"]="Usuario no existe";
+        }else{
+          if(Autenticador::verificarPassword($usuario->getPassword(),$usuarioEncontrado["password"] )!=true){
+            $errores["password"]="Error en los datos verifique";
+          }else{
+            Autenticador::seteoSesion($usuarioEncontrado);
+            if(isset($_POST["recordar"])){
+              Autenticador::seteoCookie($usuarioEncontrado);
+            }
+            if(Autenticador::validarUsuario()){
+              redirect("index.php");
+            }else{
+              redirect("registrar.php");
+            }
+          }
+        }
+      }
+  }else{
 
-    seteoUsuario($usuario,$_POST);
-    if(validarAcceso()){
-      header("location: index.php");
-      exit;
-    }else{
-      header("location: login.php");
-      exit;
-    }
-
+      $usuario = new Usuario(trim($_POST["email"]),$_POST["password"]);
+      $errores= $validar->validacionLogin($usuario);
+      if(count($errores)==0){
+        $usuarioEncontrado = BaseMYSQL::buscarPorEmail($usuario->getEmail(),$pdo,'users');
+        if($usuarioEncontrado == false){
+          $errores["email"]="Usuario no registrado";
+        }else{
+          if(Autenticador::verificarPassword($usuario->getPassword(),$usuarioEncontrado["password"] )!=true){
+            $errores["password"]="Error en los datos verifique";
+          }else{
+            Autenticador::seteoSesion($usuarioEncontrado);
+            if(isset($_POST["recordar"])){
+              Autenticador::seteoCookie($usuarioEncontrado);
+            }
+            if(Autenticador::validarUsuario()){
+              redirect("index.php");
+            }else{
+              redirect("registrar.php");
+            }
+          }
+        }
+      }
   }
 }
-
-}
-}
-
-
- ?>
+?>
 
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -69,7 +93,7 @@ if($_POST){
             </form>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="registrar.php">Acaso eres nuevo? Registrar</a>
-            <a class="dropdown-item" href="#">Olvido su contraseña?</a>
+            <a class="dropdown-item" href="forgetPassword.php">Olvido su contraseña?</a>
             <br>
         </article>
       </section>

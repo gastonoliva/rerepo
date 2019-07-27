@@ -14,9 +14,9 @@
             <form class="px-4 py-3">
                 <details>
                   <summary><strong>¿Que productos no se pueden vender en el sitio?</strong></summary>
-                  <h2> Ante todo, no permitimos lo que las leyes no permiten</h2>
+                  <h4> Ante todo, no permitimos lo que las leyes no permiten</h4>
                   <p>Si tenés dudas sobre algún producto, antes que nada averiguá si es legal venderlo. Básicamente, si la ley no lo permite, nosotros tampoco. Por ejemplo: drogas, medicamentos recetados, animales en peligro de extinción y varios otros.</p>
-                  <h2> Publicar productos prohibidos es una infracción a nuestras políticas</h2>
+                  <h4> Publicar productos prohibidos es una infracción a nuestras políticas</h4>
                   <p>Es muy importante que estés seguro antes de publicar porque, además de dar de baja las publicaciones que no cumplan con nuestras políticas, cada infracción queda registrada en un historial y podríamos suspender tu cuenta. </p>
                 </details>
                 <details>

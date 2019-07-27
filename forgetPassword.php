@@ -1,43 +1,17 @@
 <?php
 require_once("autoload.php");
-if ($_POST){
-  //Esta variable es quien controla si se desea guardar en archivo JSON o en MYSQL
-  $tipoConexion = "MYSQL";
-  if($tipoConexion=="JSON"){
-    $usuario = new Usuario($_POST["email"],$_POST["password"],$_POST["repassword"],$_FILES );
-
-    $errores = $validar->validacionUsuario($usuario, $_POST["repassword"]);
-
-    if(count($errores)==0){
-      $usuarioEncontrado = $json->buscarEmail($usuario->getEmail());
-
-      if($usuarioEncontrado != null){
-        $errores["email"]="Usuario ya registrado";
-      }else{
-        $avatar = $registro->armarAvatar($usuario->getAvatar());
-        $registroUsuario = $registro->armarUsuario($usuario,$avatar);
-
-        $json->guardar($registroUsuario);
-
-        redirect ("login.php");
-      }
-    }
-  }
- else{
-  $usuario = new Usuario($_POST["email"],$_POST["password"],$_POST["repassword"],$_FILES );
-  $errores = $validar->validacionUsuario($usuario);
+if($_POST){
+  $usuario = new Usuario($_POST["email"],$_POST["password"],$_POST["repassword"]);
+  $errores= $validar->validacionOlvide($usuario);
   if(count($errores)==0){
-    $usuarioEncontrado = BaseMYSQL::buscarPorEmail($usuario->getEmail(),$pdo,'users');
-    if($usuarioEncontrado != false){
-      $errores["email"]= "Usuario ya Registrado";
+    $usuarioEncontrado = $json->buscarEmail($usuario->getEmail());
+    if($usuarioEncontrado == null){
+      $errores["email"]="El usuario no existe en nuestra base de datos";
     }else{
-      $filebutton = $registro->armarAvatar($usuario->getAvatar());
-      BaseMYSQL::guardarUsuario($pdo,$usuario,'users',$filebutton);
-      redirect ("login.php");
+        $registro = $json->jsonRegistroOlvide($usuario->getEmail(),$usuario->getPassword());
+          redirect("index.php");
     }
   }
-
- }
 }
 ?>
 
@@ -66,7 +40,7 @@ if ($_POST){
 <fieldset>
 
 <!-- Form Name -->
-<legend class="offset-4">Crear usuario</legend>
+<legend class="offset-1"><h2>Olvide mi contraseña</h2></legend>
 
 <!-- Text input-->
 <div class="form-group">
@@ -92,16 +66,6 @@ if ($_POST){
   <div>
     <input id="repassword" name="repassword" type="password" placeholder="Confirmar contraseña" class="form-control input-md">
  <span><?= isset($errores["repassword"])? $errores["repassword"]: ""; ?></span>
-  </div>
-</div>
-
-<!-- File Button -->
-<div class="form-group">
-  <label class="col-xs-12 control-label" for="filebutton">Insertar foto</label>
-  <div>
-    <input id="filebutton" name="filebutton"  class="input-file" type="file">
-    <br>
-    <span><?= isset($errores["filebutton"])? $errores["filebutton"]: ""; ?></span>
   </div>
 </div>
 

@@ -5,9 +5,12 @@ function dd($valor){
     echo "</pre>";
     exit;
 }
-
 function persistir($input){
-    if(isset($_POST[$input])){
-       return $_POST[$input];
-    }
+  if(isset($_POST[$input])){
+    return $_POST[$input];
+  }
+}
+function redirect($destino){
+    header("location:".$destino);
+    exit;
 }
