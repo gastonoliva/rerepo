@@ -81,5 +81,42 @@ class Validador{
         return $errores;
     }
 
+    public function validacionProducto($producto){
+
+        $errores=array();
+        $nombre = trim($producto->getProducto());
+        if(empty($nombre)){
+            $errores["producto"]="Ingrese nombre del producto";
+        }
+        $descripcion= trim($producto->getDescripcion());
+        if(empty($descripcion)){
+            $errores["descripcion"]= "El campo descripción no puede estar en blanco";
+        }
+        $cantidad = trim($producto->getCantidad());
+        if($cantidad<=0){
+            $errores["cantidad"]= "Ingrese una cantidad mayor a cero";
+        }elseif (!isnumeric($cantidad)) {
+            $errores["descripcion"]="Ingrese la cantidad en números";
+        }
+        $precio= trim($producto->getPrecio());
+        if(empty($precio)){
+            $errores["precio"]= "El campo no puede estar vacío";
+        }elseif (!isnumeric($precio)) {
+            $errores["precio"]="Ingrese el precio en números";
+        }
+        if($producto->getImagen()!=null){
+            if($_FILES["imagen"]["error"]!=0){
+                $errores["imagen"]="Error debe subir imagen";
+            }else{
+                $nombre = $_FILES["imagen"]["name"];
+                $ext = pathinfo($nombre,PATHINFO_EXTENSION);
+                if($ext != "png" && $ext != "jpg"){
+                    $errores["imagen"]="Debe seleccionar archivo png ó jpg";
+                }
+            }
+        }
+
+        return $errores;
+    }
 
 }

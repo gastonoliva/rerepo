@@ -78,10 +78,14 @@ class BaseJSON extends BaseDatos{
     public function leer(){
         //A futuro trabajaremos en esto
     }
-    public function actualizar(){
+    public function actualizar($usuario,$pdo,$tabla){
         //A futuro trabajaremos en esto
     }
     public function borrar(){
         //A futuro trabajaremos en esto
+    }
+
+    public function guardarProducto(){
+
     }
 }

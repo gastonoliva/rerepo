@@ -37,8 +37,13 @@ class BaseMYSQL extends BaseDatos{
     public function leer(){
         //A futuro trabajaremos en esto
     }
-    public function actualizar(){
-        //A futuro trabajaremos en esto
+    public function actualizar($usuario,$pdo,$tabla){
+        $sql = "UPDATE $tabla SET password= :password WHERE email= :email";
+        $query = $pdo->prepare($sql);
+        $query->bindValue(':email',$usuario->getEmail());
+        $query->bindValue(':password',Encriptar::hashPassword($usuario->getPassword()));
+        $query->execute();
+
     }
     public function borrar(){
         //A futuro trabajaremos en esto
@@ -46,5 +51,18 @@ class BaseMYSQL extends BaseDatos{
     public function guardar($usuario){
         //Este fue el método usao para json
     }
+
+   public function guardarProducto(){
+
+   }
+
+   public function traerCategorias($pdo){
+     $sql = "SELECT * FROM categories";
+     // Aquí ejecuto el prepare de los datos
+     $query = $pdo->prepare($sql);
+     $query->execute();
+     $categorias = $query->fetchAll(PDO::FETCH_ASSOC);
+     return $categorias;
+   }
 
 }

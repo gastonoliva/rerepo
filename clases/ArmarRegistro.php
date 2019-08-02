@@ -28,4 +28,18 @@ class ArmarRegistro{
 
         return $usuario;
     }
+
+    public function armarProducto($registro,$filebutton){
+
+        $producto = [
+            "producto"=>$registro->getProducto(),
+            "descripcion"=>$registro->getDescripcion(),
+            "cantidad"=>$registro->getCantidad(),
+            "precio"=>$registro->getPrecio(),
+            "categoria_id"=>$registro->getCategoria_id(),
+            "imagen"=>$filebutton
+        ];
+
+        return $producto;
+    }
 }

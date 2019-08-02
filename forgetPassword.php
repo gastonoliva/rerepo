@@ -4,11 +4,11 @@ if($_POST){
   $usuario = new Usuario($_POST["email"],$_POST["password"],$_POST["repassword"]);
   $errores= $validar->validacionOlvide($usuario);
   if(count($errores)==0){
-    $usuarioEncontrado = $json->buscarEmail($usuario->getEmail());
+    $usuarioEncontrado = BaseMYSQL::buscarPorEmail($usuario->getEmail(), $pdo, "users");
     if($usuarioEncontrado == null){
       $errores["email"]="El usuario no existe en nuestra base de datos";
     }else{
-        $registro = $json->jsonRegistroOlvide($usuario->getEmail(),$usuario->getPassword());
+        BaseMYSQL::actualizar($usuario,$pdo,"users");
           redirect("index.php");
     }
   }
@@ -73,7 +73,7 @@ if($_POST){
 <div class="form-group">
   <label class="col-xs-12 control-label" for="singlebutton"></label>
   <div>
-    <button id="singlebutton" name="singlebutton" class="btn btn-primary offset-4">Crear usuario</button>
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary offset-3">Cambiar contraseña</button>
   </div>
 </div>
 

@@ -66,7 +66,7 @@ if ($_POST){
 <fieldset>
 
 <!-- Form Name -->
-<legend class="offset-4">Crear usuario</legend>
+<legend class="text-center"><h2>Crear usuario</h2></legend>
 
 <!-- Text input-->
 <div class="form-group">

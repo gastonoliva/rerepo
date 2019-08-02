@@ -2,8 +2,10 @@
 include_once("autoload.php");
 
 $email="";
+$role="";
 if(isset($_SESSION["email"])) {
   $email = $_SESSION["email"];
+  $role = $_SESSION["role"];
 }
 ?>
 <header>
@@ -26,30 +28,51 @@ if(isset($_SESSION["email"])) {
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">Vehiculos</a>
-          <a class="dropdown-item" href="#">Tecnologia</a>
+          <a class="dropdown-item" href="#">Tecnología</a>
           <a class="dropdown-item" href="#">Deportes y aire libre</a>
           <a class="dropdown-item" href="#">Belleza y cuidado personal</a>
           <a class="dropdown-item" href="#">Libros</a>
         </div>
       </li>
+      <?php if(($email)==null):?>
       <li class="nav-item">
-        <a class="nav-link" href="Login.php">Ingresar</a>
+      <a class="nav-link" href="login.php">Ingresar</a>
       </li>
+      <?php endif;?>
+      <?php if(($email)==null):?>
       <li class="nav-item">
         <a class="nav-link" href="registrar.php">Registrar</a>
       </li>
+      <?php endif;?>
       <li class="nav-item">
         <a class="nav-link" href="FAQ.php">Ayuda</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><?= $email?></a>
+      <?php if($email!=""):?>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <?= $email?>
+        </a>
+        <?php endif;?>
+        <?php if($role!=9):?>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="registrarProducto.php">Nuevo Producto</a>
+        </div>
+      <?php elseif($role==9):?>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">Administrador de usuarios</a>
+          <a class="dropdown-item" href="#">Administrador de productos</a>
+          <a class="dropdown-item" href="registrarProducto.php">Nuevo Producto</a>
+        </div>
+        <?php endif;?>
       </li>
+      <?php if(($email)!=null):?>
       <li class="nav-item">
         <a class="nav-link" href="logout.php">Salir</a>
       </li>
+      <?php endif;?>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="¿Qué estas buscando?" aria-label="Search">

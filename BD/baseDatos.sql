@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `tradingpost` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+CREATE DATABASE  IF NOT EXISTS `tradingpost` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `tradingpost`;
 -- MySQL dump 10.17  Distrib 10.3.16-MariaDB, for Win64 (AMD64)
 --
@@ -49,9 +49,8 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `categoria` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `descripcion` varchar(255) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,6 +59,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Vehículos'),(2,'Libros'),(3,'Tecnología'),(4,'Deportes y aire libre'),(5,'Belleza y cuidado personal');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,6 +124,7 @@ CREATE TABLE `products` (
   `cantidad` int(10) NOT NULL,
   `precio` decimal(10,0) NOT NULL,
   `imagen` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `categoria_id` int(10) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -134,7 +135,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'auto','modelo 32434',1,30000,''),(2,'auto','modelo 32434',1,30000,'sdasdasds');
+INSERT INTO `products` VALUES (1,'auto','modelo 32434',1,30000,'',0),(2,'auto','modelo 32434',1,30000,'sdasdasds',0);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +154,7 @@ CREATE TABLE `users` (
   `role` int(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +163,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'juanzata9@gmail.com','$2y$10$ZQAuf0s1g6JvEn6spy8J6u7WT3TYhGaPOMGTtGkybvjNUVuOV9RjG','5d3c80efc897f.jpg',1),(2,'gaston@gmail.com','$2y$10$.BqFWnPKpreuWiFHRb2FOulZZyZNaMGoM2HYWGVw1PoltfEYNd84a','5d3ca9de90e48.jpg',1);
+INSERT INTO `users` VALUES (1,'juanzata9@gmail.com','$2y$10$ZQAuf0s1g6JvEn6spy8J6u7WT3TYhGaPOMGTtGkybvjNUVuOV9RjG','5d3c80efc897f.jpg',1),(2,'gaston@gmail.com','$2y$10$.BqFWnPKpreuWiFHRb2FOulZZyZNaMGoM2HYWGVw1PoltfEYNd84a','5d3ca9de90e48.jpg',1),(3,'gaston@hotmail.com','$2y$10$/H/cFMznja948QCmQwuFE.mNwE0wP.cyTVVObUvZu95u8o4LaT6Ba','5d3f481e7e52b.jpg',9);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,4 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-27 17:32:59
+-- Dump completed on 2019-08-01 17:26:09
